@@ -16,4 +16,6 @@ public interface CategoriaDAO {
 
 	void eliminar(Integer id) throws Exception;
 
+	int obtenerNroProductosPorCategoria(Integer categoria_id) throws Exception;
+
 }

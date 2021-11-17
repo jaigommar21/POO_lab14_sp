@@ -1,9 +1,11 @@
 package pe.edu.tecsup.app.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,6 +141,34 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 		
 		stmt.close();
 		con.close();
+	}
+
+	@Override
+	public int obtenerNroProductosPorCategoria(Integer categoria_id) throws Exception {
+
+		// Conexion
+		Connection con = ConexionDB.getConexion();
+		
+		// Preparamos la sentencia
+		String sql ="{CALL contar_productos (?,?)} ";
+		CallableStatement cstatement = con.prepareCall(sql);
+	
+		// Entradas
+		cstatement.setInt(1, categoria_id);//Tipo entero
+		
+		// Salidas
+		cstatement.registerOutParameter(2,Types.BINARY);
+		
+		// Ejecucion
+		cstatement.execute();
+		
+		// Obtencion de los valores de salida
+		int  nroProds = cstatement.getInt(2);
+		
+		// Cerrarmos conexion
+		cstatement.close();
+				
+		return nroProds;
 	}
 	
 }

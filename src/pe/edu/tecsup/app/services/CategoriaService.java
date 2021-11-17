@@ -35,4 +35,8 @@ public class CategoriaService {
 	public void eliminar(Integer id) throws Exception{
 		categoriaDAO.eliminar(id);
 	}
+	
+	public int obtenerNroProductosPorCategoria(Integer cat_id) throws Exception{
+		return categoriaDAO.obtenerNroProductosPorCategoria(cat_id);
+	}
 }
