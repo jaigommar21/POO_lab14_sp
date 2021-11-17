@@ -144,7 +144,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	}
 
 	@Override
-	public int obtenerNroProductosPorCategoria(Integer categoria_id) throws Exception {
+	public int obtenerNroProductosPorCategoria(Integer categoria_id) 
+				throws Exception {
 
 		// Conexion
 		Connection con = ConexionDB.getConexion();
